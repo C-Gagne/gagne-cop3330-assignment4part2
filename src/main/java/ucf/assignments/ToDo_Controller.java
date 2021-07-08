@@ -5,6 +5,8 @@
 
 package ucf.assignments;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,9 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -61,9 +65,15 @@ public class ToDo_Controller
             // description will be a string
         Creator_ObservableList createNewObsList = new Creator_ObservableList();
 
-        statusColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, Boolean>("status"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo,LocalDate>("dueDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, String>("description"));
+
+        statusColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SingleToDo, Boolean>, ObservableValue<Boolean>>()
+        { public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SingleToDo, Boolean> completionStatus) {
+            return new SimpleBooleanProperty(completionStatus.getValue().getStatus()); } });
+        statusColumn.setCellFactory(new Callback<TableColumn<SingleToDo, Boolean>, TableCell<SingleToDo, Boolean>>() {
+            public TableCell<SingleToDo, Boolean> call(TableColumn<SingleToDo, Boolean> completionStatusCheckBox) {
+                return new CheckBoxTableCell<>(); } });
 
         tableView.setItems(createNewObsList.genObservableList());
         tableView.setEditable(true);
@@ -114,7 +124,6 @@ public class ToDo_Controller
         // This requires the creation of a new SingleToDo into the list
             // We have to make sure we have the list
                 // Then add an entry to it.
-
         SingleToDo newEntry = new SingleToDo(false, LocalDate.now(),"N/a");
         if (!(tableView.getItems().contains(newEntry)))
         {
