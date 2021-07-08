@@ -48,7 +48,7 @@ public class ToDo_Controller
     // Basic definition for combo box
     @FXML public ComboBox<String> viewOptions;
     // Basic definitions of the columns in the table.
-    @FXML private TableView<SingleToDo> tableView;
+    @FXML public TableView<SingleToDo> tableView;
     @FXML private TableColumn<SingleToDo, Boolean> statusColumn;
     @FXML private TableColumn<SingleToDo, LocalDate> dueDateColumn;
     @FXML private TableColumn<SingleToDo, String> descriptionColumn;
@@ -65,8 +65,11 @@ public class ToDo_Controller
             // description will be a string
         Creator_ObservableList createNewObsList = new Creator_ObservableList();
 
+        TableView<SingleToDo> tableView = new TableView<SingleToDo>();
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo,LocalDate>("dueDate"));
+
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, String>("description"));
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         statusColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SingleToDo, Boolean>, ObservableValue<Boolean>>()
         { public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SingleToDo, Boolean> completionStatus) {
@@ -75,9 +78,9 @@ public class ToDo_Controller
             public TableCell<SingleToDo, Boolean> call(TableColumn<SingleToDo, Boolean> completionStatusCheckBox) {
                 return new CheckBoxTableCell<>(); } });
 
-        tableView.setItems(createNewObsList.genObservableList());
+
         tableView.setEditable(true);
-        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
 
     }
 
@@ -158,7 +161,15 @@ public class ToDo_Controller
         // This event will change the scene to help screen
             // Help screen needs to maintain values and have a button to take the user back to the todo list.
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("HelpScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HelpScreen.fxml"));
+            Parent root = loader.load();
+
+            // We need to get the controller for the HelpScreen information.
+            HelpScreen_Controller helpScreenController = loader.getController();
+
+            //Then we need to pass data (otherwise the table resets after hitting the help button)
+            helpScreenController.holdObservableListData(tableView.getItems());
+
             // Then we have to create the stage
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) clickedHelpButton.getSource()).getScene().getWindow();

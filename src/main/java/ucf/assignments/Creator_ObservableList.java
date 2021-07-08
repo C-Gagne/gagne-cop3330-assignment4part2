@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Creator_ObservableList
 {
     // This class will create and hold observable list values.
-        // Dummy values have been made to test out the functions.
+    // Dummy values have been made to test out the functions.
 
     public ObservableList<SingleToDo> genObservableList()
     {
