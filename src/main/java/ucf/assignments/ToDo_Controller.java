@@ -57,10 +57,13 @@ public class ToDo_Controller
                     // Its table cell will have to be set up as a checkbox
             // dueDate will be a Date or LocalDate
             // description will be a string
+        Creator_ObservableList createNewObsList = new Creator_ObservableList();
 
         statusColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, Boolean>("status"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo,LocalDate>("dueDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, String>("description"));
+
+        tableView.setItems(createNewObsList.genObservableList());
 
     }
 

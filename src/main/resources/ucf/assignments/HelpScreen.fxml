@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpScreen_Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpScreen_Controller">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -43,9 +43,9 @@
             </Tab>
         </tabs>
       </TabPane>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar prefHeight="25.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#goBack" text="Back" />
+          <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Back" />
         </buttons>
       </ButtonBar>
    </children>
