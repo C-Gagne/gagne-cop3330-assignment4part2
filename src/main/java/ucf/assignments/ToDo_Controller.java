@@ -108,4 +108,9 @@ public class ToDo_Controller
 
     }
 
+    public void displayHelp(ActionEvent clickedHelpButton)
+    {
+        // This even will change the scene to help screen
+            // Help screen needs to maintain values and have a button to take the user back to the todo list.
+    }
 }
