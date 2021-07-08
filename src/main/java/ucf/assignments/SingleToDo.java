@@ -11,7 +11,7 @@ import javafx.scene.control.CheckBox;
 
 import java.time.LocalDate;
 
-public class Entry
+public class SingleToDo
 {
     // This class needs to contain the fields that will be displayed
         // We need:

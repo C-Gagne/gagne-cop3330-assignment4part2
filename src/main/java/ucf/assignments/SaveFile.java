@@ -14,11 +14,4 @@ public class SaveFile
         // Using a writer, that data will be written to a csv (...)
             // (...) as a string, separated by commas
     }
-
-    public void writeListToDoExcel() {
-        // Calls getUserInput to get the file name to save to
-        // Using a writer, that data will be written to a csv (...)
-        // (...) as a string, separated by commas
-            // This function has to use the "List_of_Entries" and Titles
-    }
 }

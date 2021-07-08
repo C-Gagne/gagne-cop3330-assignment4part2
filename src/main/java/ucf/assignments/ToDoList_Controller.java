@@ -5,27 +5,12 @@
 
 package ucf.assignments;
 
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.stage.Stage;
-import javafx.util.Callback;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ToDoList_Controller
 {
@@ -50,10 +35,10 @@ public class ToDoList_Controller
     // Basic definition for combo box
     @FXML public ComboBox<String> viewOptions;
     // Basic definitions of the columns in the table.
-    @FXML private TableView<Entry> tableView;
-    @FXML private TableColumn<Entry, Boolean> statusColumn;
-    @FXML private TableColumn<Entry, LocalDate> dueDateColumn;
-    @FXML private TableColumn<Entry, String> descriptionColumn;
+    @FXML private TableView<SingleToDo> tableView;
+    @FXML private TableColumn<SingleToDo, Boolean> statusColumn;
+    @FXML private TableColumn<SingleToDo, LocalDate> dueDateColumn;
+    @FXML private TableColumn<SingleToDo, String> descriptionColumn;
 
     @FXML public void initialize()
     {
@@ -103,7 +88,7 @@ public class ToDoList_Controller
         // This event will create a new, empty, entry in the list.
             // The user can edit it after it is created.
 
-        // This requires the creation of a new Entry into the list
+        // This requires the creation of a new SingleToDo into the list
             // We have to make sure we have the list
                 // Then add an entry to it.
     }

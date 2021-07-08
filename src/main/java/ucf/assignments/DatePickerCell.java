@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableCell;
 import java.util.Date;
 
-public class DatePickerCell<S, T> extends TableCell<Entry, Date> {
+public class DatePickerCell<S, T> {
 
-    public DatePickerCell(ObservableList<List_of_Entries> dueDateEntry) {
+    public DatePickerCell(ObservableList<SingleToDo> dueDateEntry) {
         // This will correspond to the due date cell
             // It will call the date picker
     }
