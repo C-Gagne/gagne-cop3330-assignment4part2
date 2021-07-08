@@ -1,0 +1,92 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ToDo {
+    main()
+    start()
+}
+class ToDo_Controller
+{
+    saveListOfToDo(ActionEvent clickSaveList)
+    loadListOfToDO(ActionEvent clickLoadList)
+    createNewList(ActionEvent clickCreateNewList)
+    deleteList(ActionEvent clickDeleteList)
+    changeTitleCellEvent(CellEditEvent editedCell)
+    goToList(ActionEvent clickGoToList)
+
+}
+class ToDoList_Controller
+{
+    initialize()
+    changeDescriptionCellEvent(CellEditEvent editedCell)
+    changeDueDateCellEvent(CellEditEvent editedCell)
+    saveToDoFile(ActionEvent clickedSaveFile)
+    loadToDoFile(ActionEvent clickedLoadFile)
+    addItemToList(ActionEvent clickedAddItem)
+    removeItemFromList(ActionEvent clickedRemoveItem)
+    backToListOfToDo(ActionEvent clickedBackButton)
+
+}
+class UserInput
+{
+    getUserInput()
+        return userFileName
+}
+
+class SaveFile
+{
+    public void writeSingleToDoExcel(String userFileName)
+    public void writeListToDoExcel(String userFileName)
+}
+
+class LoadFile
+{
+    writeSingleToDoExcel(String userFileName)
+    writeListToDoExcel(String userFileName)
+}
+
+class List_of_Entries
+{
+    Map<String, List<Entry>> listOfEntries;
+    String title;
+    setListEntries(Map<String, List<Entry>> list_Entries)
+    Map<String, List<Entry>> getEntries()
+        return listOfEntries;
+}
+
+class Entry
+{
+        SimpleBooleanProperty status;
+        LocalDate dueDate;
+        SimpleStringProperty description;
+}
+
+class DatePickerCell
+{
+    DatePickerCell(ObservableList<List_of_Entries> dueDateEntry)
+    updateDueDate(Date dueDate, boolean empty)
+    createDatePicker()
+}
+
+
+javaFX.Application <|-- ToDo
+
+ToDo <|-- ToDo_Controller
+ToDo_Controller <-> ToDoList_Controller
+
+ToDo_Controller <-- SaveFile
+SaveFile <-- UserInput
+ToDo_Controller <-- LoadFile
+LoadFile <-- UserInput
+
+ToDo_Controller <-- List_of_Entries
+List_of_Entries *-- Entry
+
+ToDoList_Controller <-- SaveFile
+ToDoList_Controller <-- LoadFile
+
+DatePickerCell --|> ToDoList_Controller
+
+
+
+@enduml
