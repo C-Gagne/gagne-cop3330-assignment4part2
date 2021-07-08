@@ -34,7 +34,7 @@ class LoadFile
     writeSingleToDoExcel(String userFileName)
 }
 
-class Entry
+class SingleToDo
 {
         SimpleBooleanProperty status;
         LocalDate dueDate;
@@ -52,7 +52,7 @@ class DatePickerCell
 javaFX.Application <|-- ToDo
 
 ToDo <|-- ToDo_Controller
-
+ToDo_Controller <|--- SingleToDo
 
 SaveFile <-- UserInput
 LoadFile <-- UserInput

@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 
@@ -50,6 +51,10 @@ public class ToDo_Controller
                     // Its table cell will have to be set up as a checkbox
             // dueDate will be a Date or LocalDate
             // description will be a string
+
+        statusColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, Boolean>("status"));
+        dueDateColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo,LocalDate>("dueDate"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, String>("description"));
 
     }
 
