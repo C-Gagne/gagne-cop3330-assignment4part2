@@ -33,4 +33,35 @@ public class SingleToDo
 
  */
 
+    private SimpleBooleanProperty status;
+    private LocalDate dueDate;
+    private SimpleStringProperty description;
+
+    public SingleToDo(boolean status, LocalDate dueDate, String description)
+    {
+        this.status = new SimpleBooleanProperty(status);
+        this.dueDate = dueDate;
+        this.description = new SimpleStringProperty(description);
+    }
+
+    public boolean getStatus() { return status.get(); }
+    public void setStatus(boolean status) {
+        this.status.set(status);
+    }
+
+    public LocalDate getDueDate() { return dueDate; }
+    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+
+    public String getDescription() {
+        return description.get();
+    }
+    public SimpleStringProperty descriptionProperty() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = new SimpleStringProperty(description);
+    }
+
+
+
 }
