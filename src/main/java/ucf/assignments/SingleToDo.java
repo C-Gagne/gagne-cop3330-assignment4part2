@@ -5,11 +5,15 @@
 
 package ucf.assignments;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
 
 import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
 
 public class SingleToDo
 {
@@ -34,13 +38,13 @@ public class SingleToDo
  */
 
     private SimpleBooleanProperty status;
-    private LocalDate dueDate;
+    private SimpleObjectProperty<LocalDate> dueDate;
     private SimpleStringProperty description;
 
     public SingleToDo(Boolean status, LocalDate dueDate, String description)
     {
         this.status = new SimpleBooleanProperty(status);
-        this.dueDate = dueDate;
+        this.dueDate = new SimpleObjectProperty<>(dueDate);
         this.description = new SimpleStringProperty(description);
     }
 
@@ -52,8 +56,11 @@ public class SingleToDo
         return status;
     }
 
-    public LocalDate getDueDate() { return dueDate; }
-    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+    public LocalDate getDueDate() { return dueDate.get(); }
+    public SimpleObjectProperty<LocalDate> dueDateProperty() {
+        return dueDate;
+    }
+    public void setDueDate(LocalDate dueDate) { this.dueDate.set(dueDate); }
 
     public String getDescription() {
         return description.get();

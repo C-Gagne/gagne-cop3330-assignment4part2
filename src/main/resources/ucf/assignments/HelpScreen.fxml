@@ -45,7 +45,7 @@
       </TabPane>
       <HBox prefHeight="25.0" prefWidth="619.0">
          <children>
-          <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Back" />
+          <Button mnemonicParsing="false" onAction="#goBack" prefWidth="75.0" text="Back" />
          </children>
       </HBox>
    </children>

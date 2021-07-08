@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,7 +24,9 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 public class ToDo_Controller
 {
@@ -46,7 +49,8 @@ public class ToDo_Controller
 
 
     // Basic definition for combo box
-    @FXML public ComboBox<String> viewOptions;
+    @FXML private ComboBox<String> viewOptions;
+    @FXML private DatePicker datePicker;
     // Basic definitions of the columns in the table.
     @FXML public TableView<SingleToDo> tableView;
     @FXML private TableColumn<SingleToDo, Boolean> statusColumn;
@@ -82,6 +86,7 @@ public class ToDo_Controller
         statusColumn.setCellFactory(CheckBoxTableCell.forTableColumn(statusColumn));
 
 
+
         tableView.setEditable(true);
 
 
@@ -103,8 +108,11 @@ public class ToDo_Controller
     {
         // When selected, the selected Due Date cell needs to open up a DatePicker
             // Once a date is selected within the date picker, the value needs to be updated.
-                // This will use the Class DatePickerCell
+                // This will NOT use another class.
 
+        LocalDate newDueDate = datePicker.getValue();
+        SingleToDo entrySelected = tableView.getSelectionModel().getSelectedItem();
+        entrySelected.setDueDate(newDueDate);
     }
 
 
@@ -156,7 +164,6 @@ public class ToDo_Controller
         {
             selectedSingleToDo.remove(singleToDo);
         }
-
     }
 
     public void displayHelp(ActionEvent clickedHelpButton)
