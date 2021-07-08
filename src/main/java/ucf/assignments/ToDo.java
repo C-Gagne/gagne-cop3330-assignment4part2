@@ -58,7 +58,7 @@ public class ToDo extends Application {
     public void start(Stage primaryStage)
     {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ToDoList.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
 
             Scene scene = new Scene(root);
 
