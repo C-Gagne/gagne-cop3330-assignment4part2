@@ -7,6 +7,7 @@ package ucf.assignments;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -142,6 +143,22 @@ public class ToDo_Controller
     {
         // This will call UserInput to get a file name
         // Then will call LoadFile's readSingleToDoExcel
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load To Do List");
+
+        Stage stage = (Stage) tableView.getScene().getWindow();
+
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null)
+        {
+            ObservableList<SingleToDo> loadedList = FXCollections.observableArrayList();
+            LoadFile loadExistingFile = new LoadFile();
+            loadedList = loadExistingFile.writeSingleToDoExcel(selectedFile);
+            tableView.setItems(loadedList);
+        }
     }
 
 
