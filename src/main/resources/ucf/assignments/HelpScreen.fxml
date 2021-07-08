@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpScreen_Controller">
@@ -43,10 +43,10 @@
             </Tab>
         </tabs>
       </TabPane>
-      <ButtonBar prefHeight="25.0" prefWidth="200.0">
-        <buttons>
+      <HBox prefHeight="25.0" prefWidth="619.0">
+         <children>
           <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Back" />
-        </buttons>
-      </ButtonBar>
+         </children>
+      </HBox>
    </children>
 </VBox>

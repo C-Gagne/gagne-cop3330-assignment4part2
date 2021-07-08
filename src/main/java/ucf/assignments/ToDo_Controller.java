@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -64,14 +65,21 @@ public class ToDo_Controller
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, String>("description"));
 
         tableView.setItems(createNewObsList.genObservableList());
+        tableView.setEditable(true);
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
     }
+
 
     public void changeDescriptionCellEvent(CellEditEvent editedCell)
     {
         // To edit the description cell, first we have to get the selected cell from the tableView
         // Then we have to take the edited value
             // Convert it to string and get the new value.
+
+        SingleToDo entrySelected = tableView.getSelectionModel().getSelectedItem();
+        entrySelected.setDescription(editedCell.getNewValue().toString());
+
     }
 
     public void changeDueDateCellEvent(CellEditEvent editedCell)
@@ -105,6 +113,14 @@ public class ToDo_Controller
         // This requires the creation of a new SingleToDo into the list
             // We have to make sure we have the list
                 // Then add an entry to it.
+
+        SingleToDo newEntry = new SingleToDo(false, LocalDate.now(),"N/a");
+        if (!(tableView.getItems().contains(newEntry)))
+        {
+            tableView.getItems().add(newEntry);
+        }
+        else
+            System.out.println("Entry already exists.");
     }
 
     public void removeItemFromList(ActionEvent clickedRemoveItem)
