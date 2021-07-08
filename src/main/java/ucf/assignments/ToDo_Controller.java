@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 
 import java.time.LocalDate;
 
-public class ToDoList_Controller
+public class ToDo_Controller
 {
     // The table has to be configured
         // We need to declare the tableView, and what it contains

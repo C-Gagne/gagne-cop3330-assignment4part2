@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ToDoList_ControllerTest_addItemToList {
+class ToDoList_ControllerTest_addItemTo {
 
     @Test
     void addItemToList_AddNewItem_CheckNewListIsCorrect_AssertTrue()

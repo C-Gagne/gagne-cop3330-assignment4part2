@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ToDoList_ControllerTest_Initialize {
+class ToDo_ControllerTest_Initialize {
 
     @Test
     void initialize_CheckTableExists_AssertTrue()

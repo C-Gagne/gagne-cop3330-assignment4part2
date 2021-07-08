@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ToDoList_ControllerTest_changeDueDate {
+class ToDo_ControllerTest_changeDueDate {
 
     @Test
     void changeDueDateCellEvent_VerifyDatePickerIsCreated_AssertsTrue()

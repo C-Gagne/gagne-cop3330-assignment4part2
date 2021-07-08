@@ -5,17 +5,8 @@ class ToDo {
     main()
     start()
 }
-class ToDo_Controller
-{
-    saveListOfToDo(ActionEvent clickSaveList)
-    loadListOfToDO(ActionEvent clickLoadList)
-    createNewList(ActionEvent clickCreateNewList)
-    deleteList(ActionEvent clickDeleteList)
-    changeTitleCellEvent(CellEditEvent editedCell)
-    goToList(ActionEvent clickGoToList)
 
-}
-class ToDoList_Controller
+class ToDo_Controller
 {
     initialize()
     changeDescriptionCellEvent(CellEditEvent editedCell)
@@ -36,22 +27,11 @@ class UserInput
 class SaveFile
 {
     public void writeSingleToDoExcel(String userFileName)
-    public void writeListToDoExcel(String userFileName)
 }
 
 class LoadFile
 {
     writeSingleToDoExcel(String userFileName)
-    writeListToDoExcel(String userFileName)
-}
-
-class List_of_Entries
-{
-    Map<String, List<Entry>> listOfEntries;
-    String title;
-    setListEntries(Map<String, List<Entry>> list_Entries)
-    Map<String, List<Entry>> getEntries()
-        return listOfEntries;
 }
 
 class Entry
@@ -72,20 +52,16 @@ class DatePickerCell
 javaFX.Application <|-- ToDo
 
 ToDo <|-- ToDo_Controller
-ToDo_Controller <-> ToDoList_Controller
 
-ToDo_Controller <-- SaveFile
+
 SaveFile <-- UserInput
-ToDo_Controller <-- LoadFile
 LoadFile <-- UserInput
 
-ToDo_Controller <-- List_of_Entries
-List_of_Entries *-- Entry
 
-ToDoList_Controller <-- SaveFile
-ToDoList_Controller <-- LoadFile
+ToDo_Controller <-- SaveFile
+ToDo_Controller <-- LoadFile
 
-DatePickerCell --|> ToDoList_Controller
+DatePickerCell --|> ToDo_Controller
 
 
 

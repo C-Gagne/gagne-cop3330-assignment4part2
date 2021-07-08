@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ToDoList_ControllerTest_removeItemFromList {
+class ToDoList_ControllerTest_removeItemFrom {
 
     @Test
     void removeItemFromList_SelectItem_VerifyNewListSize_AssertEquals()

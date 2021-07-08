@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ToDoList_ControllerTest_changeDescription {
+class ToDo_ControllerTest_changeDescription {
 
     @Test
     void changeDescriptionCellEvent_VerifyExpectedDescription_AssertTrue()
