@@ -7,10 +7,16 @@ package ucf.assignments;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class ToDo_Controller
@@ -110,7 +116,20 @@ public class ToDo_Controller
 
     public void displayHelp(ActionEvent clickedHelpButton)
     {
-        // This even will change the scene to help screen
+        // This event will change the scene to help screen
             // Help screen needs to maintain values and have a button to take the user back to the todo list.
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("HelpScreen.fxml"));
+            // Then we have to create the stage
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) clickedHelpButton.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            // Then we show the stage
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
