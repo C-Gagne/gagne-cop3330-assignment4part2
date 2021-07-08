@@ -118,30 +118,4 @@ public class ToDoList_Controller
 
     }
 
-
-    // We need a method to change the scene
-    public void backToListOfToDo(ActionEvent clickedBackButton)
-    {
-        // This just changes views from this list, back to the list of to do lists.
-        // We have to make sure that data is maintained between views.
-
-        // To verify that both scenes display properly:
-        // First we have to create the root...
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
-            // Then we have to create the stage
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) clickedBackButton.getSource()).getScene().getWindow();
-
-            stage.setScene(scene);
-            // Then we show the stage
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
 }

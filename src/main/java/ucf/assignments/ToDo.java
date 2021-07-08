@@ -15,52 +15,35 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /*
-    The application shall be able to manage at least 100 unique todo lists
-        // Should be inherit in Map + List
 
-    A todo list shall have a title
-        // We can create a Map where the Title is the Key, and the Value is the List of To Do items under that Key.
-            // One will be List_Of_Entries (containing the Title and List)
-                // The other will be Entry (Containing Completion Status, Due Date, and Description)
-    A todo list shall have the capacity to store at least 100 unique items
-        // This property should be inherit if we use a Map<String,List>
+    The application shall manage a single list of items
+        The list shall have the capacity to store at least 100 unique items
 
     An item shall have a description
-        // Included in "Entry" as String description
-    An item shall have a due date, formatted as YYYY-MM-DD
-        // Included in "Entry" as LocalDate dueDate
+        A description shall be between 1 and 256 characters in length
+    An item shall have a due date
+        A due date shall be a valid date within the Gregorian Calendar
+        A due date shall be displayed to users in the format: YYYY-MM-DD
 
-    A user shall be able to add a new todo list
-        // Included inside of ToDo_Controller
-    A user shall be able to remove an existing todo list
-        // Included in ToDo_Controller
-    A user shall be able to edit the title of an existing todo list
-        // Included in ToDo_Controller
-    A user shall be able to add a new item to an existing todo list
-            // Included in ToDoList_Controller
-    A user shall be able to remove an item from an existing todo list
-            // Included in ToDoList_Controller
-    A user shall be able to edit the description of an item within an existing todo list
-            // Included in ToDoList_Controller
-    A user shall be able to edit the due date of an item within an existing todo list
-            // Included in ToDoList_Controller
-    A user shall be able to mark an item in a todo list as complete
-            // Included in ToDoList_Controller
-    A user shall be able to display all of the existing items in a todo list
-            // Included in ToDoList_Controller
-    A user shall be able to display only the incomplete items in a todo list
-            // Included in ToDoList_Controller
-    A user shall be able to display only the completed items in a todo list
-            // Included in ToDoList_Controller
-    A user shall be able to save all of the items in a single todo list to external storage
-                // Included in SaveFile
-    A user shall be able to save all of the items across all of the todo lists to external storage
-                // Included in SaveFile
-    A user shall be able to load a single todo list that was previously saved to external storage
-                // Included in LoadFile
-    A user shall be able to load multiple todo lists that were previous saved to external storage
-                // Included in LoadFile
-*/
+    A user shall be able to add a new item to the list
+    A user shall be able to remove an item from the list
+    A user shall be able to clear the list of all items
+    A user shall be able to edit the description of an item within the list
+    A user shall be able to edit the due date of an item within the list
+    A user shall be able to mark an item in the list as either complete or incomplete
+    A user shall be able to display all of the existing items in the list
+    A user shall be able to display only the incomplete items in the list
+    A user shall be able to display only the completed items in the list
+
+    A user shall be able to save the list (and all of its items) to external storage
+    A user shall be able to load a list (and all of its items) from external storage
+
+    The developer shall provide a help screen with directions on how to use the application.
+        The help screen shall describe how to execute each behavioral requirement provided by the application (e.g. add an item, remove an item, edit an item, etc)
+        The help screen shall include a dedication to "Rey"
+        This help screen shall be provided as either a dedicated window within the application, or a markdown file called `readme.md` on your GitHub repository for the project.)
+
+ */
 
 
 public class ToDo extends Application {
@@ -75,7 +58,7 @@ public class ToDo extends Application {
     public void start(Stage primaryStage)
     {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ToDoList.fxml"));
 
             Scene scene = new Scene(root);
 
