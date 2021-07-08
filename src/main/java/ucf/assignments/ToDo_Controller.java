@@ -20,13 +20,17 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+
+import static javafx.stage.FileChooser.*;
 
 public class ToDo_Controller
 {
@@ -120,6 +124,18 @@ public class ToDo_Controller
     {
         // This will call UserInput to get a file name
         // Then will call SaveFile's writeSingleToDoExcel
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save New To Do List");
+
+        Stage stage = (Stage) tableView.getScene().getWindow();
+
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showSaveDialog(stage);
+
+        SaveFile saveNewFile = new SaveFile();
+        saveNewFile.writeSingleToDoExcel(selectedFile, tableView.getItems());
+
     }
 
     public void loadToDoFile(ActionEvent clickedLoadFile)
