@@ -71,12 +71,15 @@ public class ToDo_Controller
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo, String>("description"));
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        statusColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SingleToDo, Boolean>, ObservableValue<Boolean>>()
-        { public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SingleToDo, Boolean> completionStatus) {
-            return new SimpleBooleanProperty(completionStatus.getValue().getStatus()); } });
-        statusColumn.setCellFactory(new Callback<TableColumn<SingleToDo, Boolean>, TableCell<SingleToDo, Boolean>>() {
-            public TableCell<SingleToDo, Boolean> call(TableColumn<SingleToDo, Boolean> completionStatusCheckBox) {
-                return new CheckBoxTableCell<>(); } });
+        statusColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SingleToDo,Boolean>,ObservableValue<Boolean>>()
+                {
+                    @Override
+                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SingleToDo, Boolean> completionStatusCheckBox)
+                    {
+                        return completionStatusCheckBox.getValue().statusProperty();
+                    }
+                });
+        statusColumn.setCellFactory(CheckBoxTableCell.forTableColumn(statusColumn));
 
 
         tableView.setEditable(true);
