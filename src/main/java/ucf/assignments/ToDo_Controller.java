@@ -5,6 +5,7 @@
 
 package ucf.assignments;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -130,6 +131,16 @@ public class ToDo_Controller
         // Like adding and item, it requires we have the list.
             // Unlike adding items, we have to select the entry we want to delete, and only delete that entry
                 // Once we getItems() we can remove(selectedEntry).
+
+        ObservableList<SingleToDo> selectedRow, selectedSingleToDo;
+        selectedSingleToDo = tableView.getItems();
+
+        selectedRow = tableView.getSelectionModel().getSelectedItems();
+
+        for (SingleToDo singleToDo : selectedRow)
+        {
+            selectedSingleToDo.remove(singleToDo);
+        }
 
     }
 
