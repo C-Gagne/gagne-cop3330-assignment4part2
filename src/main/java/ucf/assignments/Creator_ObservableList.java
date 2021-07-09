@@ -8,20 +8,22 @@ package ucf.assignments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
-
 public class Creator_ObservableList
 {
+
+
     // This class will create and hold observable list values.
     // Dummy values have been made to test out the functions.
+    private ObservableList<SingleToDo> toDoItemsList = FXCollections.observableArrayList();
 
-    public ObservableList<SingleToDo> genObservableList()
+    public ObservableList<SingleToDo> getToDoItemsList()
     {
-        ObservableList<SingleToDo> createdObservableList = FXCollections.observableArrayList();
-        createdObservableList.add(new SingleToDo( false, LocalDate.of(1852,11,25), "Promote workflows"));
-        createdObservableList.add(new SingleToDo(true, LocalDate.of(1852,11,25), "Eat cake"));
-        createdObservableList.add(new SingleToDo( false, LocalDate.of(1754,12,25), "Go to class"));
-
-        return createdObservableList;
+        return toDoItemsList;
     }
+
+    public void setToDoItemsList(SingleToDo toDoItem)
+    {
+        this.toDoItemsList.add(toDoItem);
+    }
+
 }
