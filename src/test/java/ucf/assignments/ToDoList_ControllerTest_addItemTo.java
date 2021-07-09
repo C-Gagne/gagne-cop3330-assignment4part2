@@ -36,4 +36,24 @@ class ToDoList_ControllerTest_addItemTo {
 
 
     }
+
+    @Test
+    void addItemToList_Add100Items_AssertTrue()
+    {
+
+        ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
+        listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
+        listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
+
+        Edit_ObservableList listEditor = new Edit_ObservableList();
+        for (int i =0; i<100; i++) {
+            listForTesting = listEditor.addItemToList(listForTesting);
+        }
+        int expected = 102;
+        int actual = listForTesting.size();
+
+        assertEquals(expected,actual);
+
+
+    }
 }

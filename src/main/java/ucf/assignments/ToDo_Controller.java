@@ -195,16 +195,9 @@ public class ToDo_Controller
             // Unlike adding items, we have to select the entry we want to delete, and only delete that entry
                 // Once we getItems() we can remove(selectedEntry).
 
-        ObservableList<SingleToDo> selectedRow, selectedSingleToDo;
-
-        selectedSingleToDo = tableView.getItems();
-        selectedRow = tableView.getSelectionModel().getSelectedItems();
-
         if (viewOptions.getSelectionModel().getSelectedItem() == "Complete" || viewOptions.getSelectionModel().getSelectedItem() == "Incomplete" );
         else {
-            for (SingleToDo singleToDo : selectedRow) {
-                selectedSingleToDo.remove(singleToDo);
-            }
+            tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
         }
     }
 

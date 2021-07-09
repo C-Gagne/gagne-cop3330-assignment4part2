@@ -17,4 +17,5 @@ public class Edit_ObservableList
             baseList.add(newEntry);
             return baseList;
         }
+
 }
