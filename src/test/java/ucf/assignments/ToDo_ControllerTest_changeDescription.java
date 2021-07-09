@@ -5,7 +5,12 @@
 
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,9 +19,14 @@ class ToDo_ControllerTest_changeDescription {
     @Test
     void changeDescriptionCellEvent_VerifyExpectedDescription_AssertTrue()
     {
-        // Populate the table
-        // Verify the description @ index (1) is as expected
-        // assert true
+        ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
+        listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
+        listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
+
+        ToDo_Controller testController = new ToDo_Controller();
+        testController.tableView.setItems(listForTesting);
+
+
     }
 
     @Test
@@ -26,5 +36,6 @@ class ToDo_ControllerTest_changeDescription {
             // Select and edit cell index 1 (actual)
         // Verify the description @ index (1) is edited correctly (expected)
         // assert true
+
     }
 }

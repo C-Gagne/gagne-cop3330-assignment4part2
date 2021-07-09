@@ -116,7 +116,9 @@ public class ToDo_Controller
 
         LocalDate newDueDate = datePicker.getValue();
         SingleToDo entrySelected = tableView.getSelectionModel().getSelectedItem();
-        entrySelected.setDueDate(newDueDate);
+        if (entrySelected != null) {
+            entrySelected.setDueDate(newDueDate);
+        }
     }
 
 
