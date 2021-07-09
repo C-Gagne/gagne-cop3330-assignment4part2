@@ -16,6 +16,11 @@ public class Creator_ObservableList
     // Dummy values have been made to test out the functions.
     private ObservableList<SingleToDo> toDoItemsList = FXCollections.observableArrayList();
 
+    public void setListOfToDoItems(ObservableList<SingleToDo> toDoItemsList)
+    {
+        this.toDoItemsList = toDoItemsList;
+    }
+
     public ObservableList<SingleToDo> getToDoItemsList()
     {
         return toDoItemsList;
@@ -25,5 +30,7 @@ public class Creator_ObservableList
     {
         this.toDoItemsList.add(toDoItem);
     }
+
+
 
 }

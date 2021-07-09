@@ -58,6 +58,7 @@ public class ToDo_Controller
     @FXML private TableColumn<SingleToDo, String> descriptionColumn;
 
     Creator_ObservableList allToDoItems = new Creator_ObservableList();
+    Edit_ObservableList listEditor = new Edit_ObservableList();
 
 
     @FXML public void initialize()
@@ -177,11 +178,11 @@ public class ToDo_Controller
         // This requires the creation of a new SingleToDo into the list
             // We have to make sure we have the list
                 // Then add an entry to it.
-        SingleToDo newEntry = new SingleToDo(false, LocalDate.now(),"N/a");
+
         if (viewOptions.getSelectionModel().getSelectedItem() == "Complete");
         else
         {
-            allToDoItems.setToDoItemsList(newEntry);
+            allToDoItems.setListOfToDoItems(listEditor.addItemToList(allToDoItems.getToDoItemsList()));
             tableView.setItems(allToDoItems.getToDoItemsList());
         }
     }
@@ -240,7 +241,7 @@ public class ToDo_Controller
             HelpScreen_Controller helpScreenController = loader.getController();
 
             //Then we need to pass data (otherwise the table resets after hitting the help button)
-            helpScreenController.holdObservableListData(tableView.getItems());
+            helpScreenController.holdObservableListData(allToDoItems.getToDoItemsList());
 
             // Then we have to create the stage
             Scene scene = new Scene(root);

@@ -40,6 +40,7 @@ public class HelpScreen_Controller
 
             //Then we need to pass data (otherwise the table resets after hitting the help button)
             toDoController.tableView.setItems(heldObservableList);
+            toDoController.allToDoItems.setListOfToDoItems(heldObservableList);
 
 
             // Then we have to create the stage
