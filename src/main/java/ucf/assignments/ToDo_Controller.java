@@ -5,12 +5,9 @@
 
 package ucf.assignments;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,9 +24,7 @@ import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
 
 import static javafx.stage.FileChooser.*;
 
@@ -62,6 +57,9 @@ public class ToDo_Controller
     @FXML private TableColumn<SingleToDo, LocalDate> dueDateColumn;
     @FXML private TableColumn<SingleToDo, String> descriptionColumn;
 
+    Creator_ObservableList allToDoItems = new Creator_ObservableList();
+
+
     @FXML public void initialize()
     {
         // We have to make sure that the table is editable (table.View.setEditable(true));
@@ -72,7 +70,6 @@ public class ToDo_Controller
                     // Its table cell will have to be set up as a checkbox
             // dueDate will be a Date or LocalDate
             // description will be a string
-        Creator_ObservableList createNewObsList = new Creator_ObservableList();
 
         TableView<SingleToDo> tableView = new TableView<SingleToDo>();
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<SingleToDo,LocalDate>("dueDate"));
@@ -90,9 +87,10 @@ public class ToDo_Controller
                 });
         statusColumn.setCellFactory(CheckBoxTableCell.forTableColumn(statusColumn));
 
-
-
         tableView.setEditable(true);
+
+
+        viewOptions.getItems().addAll("All", "Complete", "Incomplete");
 
 
     }
@@ -106,6 +104,7 @@ public class ToDo_Controller
 
         SingleToDo entrySelected = tableView.getSelectionModel().getSelectedItem();
         entrySelected.setDescription(editedCell.getNewValue().toString());
+
 
     }
 
@@ -154,10 +153,15 @@ public class ToDo_Controller
 
         if (selectedFile != null)
         {
-            ObservableList<SingleToDo> loadedList = FXCollections.observableArrayList();
+            ObservableList<SingleToDo> loadedList;
             LoadFile loadExistingFile = new LoadFile();
             loadedList = loadExistingFile.writeSingleToDoExcel(selectedFile);
             tableView.setItems(loadedList);
+
+            for (int i = 0; i < tableView.getItems().size(); i++)
+            {
+                allToDoItems.setToDoItemsList(tableView.getItems().get(i));
+            }
         }
     }
 
@@ -172,12 +176,12 @@ public class ToDo_Controller
             // We have to make sure we have the list
                 // Then add an entry to it.
         SingleToDo newEntry = new SingleToDo(false, LocalDate.now(),"N/a");
-        if (!(tableView.getItems().contains(newEntry)))
-        {
-            tableView.getItems().add(newEntry);
-        }
+        if (viewOptions.getSelectionModel().getSelectedItem() == "Complete");
         else
-            System.out.println("Entry already exists.");
+        {
+            allToDoItems.setToDoItemsList(newEntry);
+            tableView.setItems(allToDoItems.getToDoItemsList());
+        }
     }
 
     public void removeItemFromList(ActionEvent clickedRemoveItem)
@@ -189,15 +193,38 @@ public class ToDo_Controller
                 // Once we getItems() we can remove(selectedEntry).
 
         ObservableList<SingleToDo> selectedRow, selectedSingleToDo;
-        selectedSingleToDo = tableView.getItems();
 
+        selectedSingleToDo = tableView.getItems();
         selectedRow = tableView.getSelectionModel().getSelectedItems();
 
-        for (SingleToDo singleToDo : selectedRow)
-        {
-            selectedSingleToDo.remove(singleToDo);
+        if (viewOptions.getSelectionModel().getSelectedItem() == "Complete" || viewOptions.getSelectionModel().getSelectedItem() == "Incomplete" );
+        else {
+            for (SingleToDo singleToDo : selectedRow) {
+                selectedSingleToDo.remove(singleToDo);
+            }
         }
     }
+
+    public void comboBoxSelection()
+    {
+
+        tableView.setItems(allToDoItems.getToDoItemsList());
+
+        if (viewOptions.getSelectionModel().getSelectedItem().equals("Complete"))
+        {
+            tableView.setItems(tableView.getItems().filtered(singleToDo -> singleToDo.getStatus() == true ));
+        }
+        else if (viewOptions.getSelectionModel().getSelectedItem().equals("Incomplete"))
+        {
+            tableView.setItems(tableView.getItems().filtered(singleToDo -> singleToDo.getStatus() == false ));
+        }
+        else
+        {
+            tableView.setItems(allToDoItems.getToDoItemsList());
+        }
+    }
+
+
 
     public void displayHelp(ActionEvent clickedHelpButton)
     {

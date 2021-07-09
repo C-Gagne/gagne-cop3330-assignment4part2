@@ -12,13 +12,13 @@
    <children>
       <HBox layoutX="-1.0" layoutY="400.0" prefHeight="25.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#displayHelp" prefHeight="25.0" prefWidth="75.0" text="Help" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#displayHelp" prefHeight="25.0" prefWidth="70.0" text="Help" textAlignment="CENTER" />
             <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="95.0" promptText="Due Date" />
-            <ComboBox fx:id="viewOptions" prefHeight="25.0" prefWidth="100.0" promptText="Filter by..." />
+            <ComboBox fx:id="viewOptions" onAction="#comboBoxSelection" prefHeight="25.0" prefWidth="115.0" promptText="View Options" />
             <Button mnemonicParsing="false" onAction="#addItemToList" prefHeight="25.0" prefWidth="95.0" text="Add New Item" />
             <Button mnemonicParsing="false" onAction="#removeItemFromList" prefHeight="25.0" prefWidth="95.0" text="Remove Item" />
-            <Button mnemonicParsing="false" onAction="#saveToDoFile" prefHeight="25.0" prefWidth="75.0" text="Save" />
-            <Button mnemonicParsing="false" onAction="#loadToDoFile" prefHeight="25.0" prefWidth="75.0" text="Load" />
+            <Button mnemonicParsing="false" onAction="#saveToDoFile" prefHeight="25.0" prefWidth="70.0" text="Save" />
+            <Button mnemonicParsing="false" onAction="#loadToDoFile" prefHeight="25.0" prefWidth="70.0" text="Load" />
          </children>
       </HBox>
       <HBox prefHeight="400.0" prefWidth="600.0">
