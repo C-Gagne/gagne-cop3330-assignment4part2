@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ToDoList_ControllerTest_editObservableList
 {
     @Test
-    void editStatus_SetToFalse_AssertTrue()
+    void editStatus_SetToFalse_AssertEquals()
     {
 
         ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
@@ -32,7 +32,7 @@ public class ToDoList_ControllerTest_editObservableList
     }
 
     @Test
-    void editStatus_SetToTrue_AssertTrue()
+    void editStatus_SetToTrue_AssertEquals()
     {
 
         ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
@@ -48,7 +48,7 @@ public class ToDoList_ControllerTest_editObservableList
     }
 
     @Test
-    void editDueDate_CheckIsToday_AssertTrue()
+    void editDueDate_CheckIsToday_AssertEquals()
     {
 
         ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
@@ -63,7 +63,7 @@ public class ToDoList_ControllerTest_editObservableList
     }
 
     @Test
-    void editDueDate_SetTo_July162021_AssertTrue()
+    void editDueDate_SetTo_July162021_AssertEquals()
     {
         LocalDate newDate = LocalDate.of(2021,07,16);
 
@@ -79,5 +79,34 @@ public class ToDoList_ControllerTest_editObservableList
 
     }
 
+    @Test
+    void editDueDate_CheckDescription_AssertEquals()
+    {
 
+        ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
+        listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
+        listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
+
+        SingleToDo actual = listForTesting.get(1);
+        String expected = "Go to class";
+
+        assertEquals(expected,actual.getDescription());
+
+    }
+
+    @Test
+    void editDueDate_ChangeDescription_AssertEquals()
+    {
+
+        ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
+        listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
+        listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
+
+        SingleToDo actual = listForTesting.get(1);
+        actual.setDescription("This is a small change");
+        String expected = "This is a small change";
+
+        assertEquals(expected,actual.getDescription());
+
+    }
 }
