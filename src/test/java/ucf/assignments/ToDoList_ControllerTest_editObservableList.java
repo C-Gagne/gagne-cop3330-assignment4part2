@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ToDoList_ControllerTest_addItemTo {
-
+public class ToDoList_ControllerTest_editObservableList
+{
     @Test
-    void addItemToList_AddNewItem_CheckNewListSizeIsCorrect_AssertTrue()
+    void editStatus_SetToFalse_AssertTrue()
     {
         // Create list
         // add item to list using this function
@@ -26,34 +26,31 @@ class ToDoList_ControllerTest_addItemTo {
         listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
         listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
 
-        Edit_ObservableList listEditor = new Edit_ObservableList();
-        listForTesting = listEditor.addItemToList(listForTesting);
+        SingleToDo actual = listForTesting.get(1);
+        actual.setStatus(false);
+        boolean expected = false;
 
-        int expected = 3;
-        int actual = listForTesting.size();
-
-        assertEquals(expected,actual);
-
+        assertEquals(expected,actual.getStatus());
 
     }
 
     @Test
-    void addItemToList_Add100Items_AssertTrue()
+    void editStatus_SetToTrue_AssertTrue()
     {
+        // Create list
+        // add item to list using this function
+        // verify list size is equal to original list, plus new item
 
         ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
         listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
         listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
 
-        Edit_ObservableList listEditor = new Edit_ObservableList();
-        for (int i =0; i<=100; i++) {
-            listForTesting = listEditor.addItemToList(listForTesting);
-        }
-        int expected = 103;
-        int actual = listForTesting.size();
+        SingleToDo actual = listForTesting.get(0);
+        actual.setStatus(true);
+        boolean expected = true;
 
-        assertEquals(expected,actual);
-
+        assertEquals(expected,actual.getStatus());
 
     }
+
 }
