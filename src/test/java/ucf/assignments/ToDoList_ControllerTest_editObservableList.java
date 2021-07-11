@@ -18,9 +18,6 @@ public class ToDoList_ControllerTest_editObservableList
     @Test
     void editStatus_SetToFalse_AssertTrue()
     {
-        // Create list
-        // add item to list using this function
-        // verify list size is equal to original list, plus new item
 
         ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
         listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
@@ -37,9 +34,6 @@ public class ToDoList_ControllerTest_editObservableList
     @Test
     void editStatus_SetToTrue_AssertTrue()
     {
-        // Create list
-        // add item to list using this function
-        // verify list size is equal to original list, plus new item
 
         ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
         listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
@@ -52,5 +46,38 @@ public class ToDoList_ControllerTest_editObservableList
         assertEquals(expected,actual.getStatus());
 
     }
+
+    @Test
+    void editDueDate_CheckIsToday_AssertTrue()
+    {
+
+        ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
+        listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
+        listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
+
+        SingleToDo actual = listForTesting.get(1);
+        LocalDate expected = LocalDate.now();
+
+        assertEquals(expected,actual.getDueDate());
+
+    }
+
+    @Test
+    void editDueDate_SetTo_July162021_AssertTrue()
+    {
+        LocalDate newDate = LocalDate.of(2021,07,16);
+
+        ObservableList<SingleToDo> listForTesting = FXCollections.observableArrayList();
+        listForTesting.add(new SingleToDo(false, LocalDate.now(), "Difo was never a god."));
+        listForTesting.add(new SingleToDo(true, LocalDate.now(), "Go to class"));
+
+        SingleToDo actual = listForTesting.get(1);
+        actual.setDueDate(newDate);
+        LocalDate expected = LocalDate.of(2021,07,16);
+
+        assertEquals(expected,actual.getDueDate());
+
+    }
+
 
 }
